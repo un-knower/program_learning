@@ -1,0 +1,4 @@
+配置rmi服务高可用性 服务器端
+ 更换port，启动多个ZooKeeperServer
+ 
+然后启动ZooKeeperClient 
