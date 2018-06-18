@@ -16,6 +16,8 @@ import org.apache.hadoop.hive.ql.udf.generic.GenericUDF;
 import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;
 import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;
 import org.apache.hadoop.io.Text;
+import org.apache.storm.guava.io.BaseEncoding;
+
 /**
  * 
  * @author bjwangguangliang
@@ -52,7 +54,7 @@ public class NetxxxxLocation extends GenericUDF {
       cipher = Cipher.getInstance(algorithm);
       cipher.init(Cipher.DECRYPT_MODE, kySpec);
       
-      return new Text(new String(cipher.doFinal(com.google.common.io.BaseEncoding.base64().decode(location))));
+      return new Text(new String(cipher.doFinal(BaseEncoding.base64().decode(location))));
        
     } catch (IllegalBlockSizeException | BadPaddingException e) {
       e.printStackTrace();
