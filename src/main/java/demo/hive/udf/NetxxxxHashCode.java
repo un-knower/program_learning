@@ -13,6 +13,8 @@ import org.apache.hadoop.hive.ql.udf.generic.GenericUDF;
 import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;
 import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.storm.guava.io.BaseEncoding;
+
 /**
  * 
  * @author bjwangguangliang
@@ -51,7 +53,7 @@ public class NetxxxxHashCode extends GenericUDF {
     String devId = arguments[0].get().toString();
     
     try {
-      String devIdAes = com.google.common.io.BaseEncoding.base64().encode(cipher.doFinal(devId.getBytes("ASCII")));
+      String devIdAes = BaseEncoding.base64().encode(cipher.doFinal(devId.getBytes("ASCII")));
       return new IntWritable(Math.abs(devIdAes.hashCode() % 100));
     } catch (IllegalBlockSizeException | BadPaddingException e) {
       e.printStackTrace();

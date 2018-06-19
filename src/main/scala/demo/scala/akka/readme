@@ -1,0 +1,13 @@
+使用akka实现一个简单的rpc框架
+
+akka的配置
+
+//Master
+akka.actor.provider = "akka.remote.RemoteActorRefProvider"
+akka.remote.netty.tcp.hostname = "$host"
+akka.remote.netty.tcp.port = "$port"
+
+//Worker
+akka.actor.provider = "akka.remote.RemoteActorRefProvider"
+akka.remote.netty.tcp.hostname = "$host"
+akka.remote.netty.tcp.port = "$port"

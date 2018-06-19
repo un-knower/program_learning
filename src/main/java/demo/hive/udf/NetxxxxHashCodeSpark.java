@@ -16,6 +16,8 @@ import org.apache.hadoop.hive.ql.udf.generic.GenericUDF;
 import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;
 import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.storm.guava.io.BaseEncoding;
+
 /**
  * 
  * @author bjwangguangliang
@@ -46,7 +48,7 @@ public class NetxxxxHashCodeSpark extends GenericUDF {
       SecretKeySpec kySpec = new SecretKeySpec(raw, algorithm);
       cipher = Cipher.getInstance(algorithm);
       cipher.init(Cipher.ENCRYPT_MODE, kySpec);
-      String devIdAes = com.google.common.io.BaseEncoding.base64().encode(cipher.doFinal(devId.getBytes("ASCII")));
+      String devIdAes = BaseEncoding.base64().encode(cipher.doFinal(devId.getBytes("ASCII")));
       return new IntWritable(Math.abs(devIdAes.hashCode() % 100));
     } catch (IllegalBlockSizeException | BadPaddingException e) {
       e.printStackTrace();
