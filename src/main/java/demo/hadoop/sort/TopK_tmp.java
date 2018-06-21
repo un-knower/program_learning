@@ -19,6 +19,10 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 /**
  * @author qingjian
+ *
+ * 唯一键
+ * 每个map找出本地的top N列表，然后把他传递给一个reduce
+ * 这个一个reduce找出所有top N列表汇总，找到最终的top n
  * 
  * 输入文件：
  * g	445
@@ -38,6 +42,9 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
  * 
  * 因为使用了 TreeMap 所以要求比较的key 唯一！！！！！！！！
+ * 如果key不唯一，那么需要配置TreeMap<Integer, List<String>> map = new TreeMap<Integer, List<String>>();
+ * 相同的value写入同一个list里面
+ *
  */
 
 
@@ -61,14 +68,22 @@ public class TopK_tmp {
 				String name = split[0];
 				Integer num = Integer.parseInt(split[1]);
 				map.put(num, name);
-				
+
+				// 只保留k个数据，如果超出，则删除
 				if(map.size()>k) {
-					map.remove(map.firstKey()); //删除最小的
+					map.remove(map.firstKey()); // 删除最小的
 				}
 				
 			}
 			
 		}
+
+        /**
+         * 在处理完所有数据后，才最终发送top n列表数据
+         * @param context
+         * @throws IOException
+         * @throws InterruptedException
+         */
 		@Override
 		protected void cleanup(
 				Mapper<LongWritable, Text, IntWritable, Text>.Context context)
@@ -127,7 +142,7 @@ public class TopK_tmp {
 			
 			job.setMapperClass(KMap.class);
 			job.setReducerClass(KReducer.class);
-			job.setNumReduceTasks(1);
+			job.setNumReduceTasks(1);  //  这里控制选1个reduce
 			job.setMapOutputKeyClass(IntWritable.class);
 			job.setMapOutputValueClass(Text.class);
 			job.setOutputKeyClass(IntWritable.class);

@@ -111,7 +111,7 @@ public class SecondarySort {
 			return second - o.second;
 		}
 		//HashPartitioner使用hasCode()方法来选择reduce分区
-//		@Override
+		@Override
 		public int hashCode() {
 			return new Integer(first).hashCode();
 		}

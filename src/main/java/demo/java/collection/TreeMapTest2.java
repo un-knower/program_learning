@@ -1,68 +1,62 @@
 package demo.java.collection;
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
-class Student {
-    String name;
-    int age;
-
-    public Student(String name, int age) {
-         this.name = name;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
-}
-public class TreeMapTest {
+/**
+ * 使用TreeMap<Integer, List<Student>> 可以是key相同的value都保存下来
+ *
+ */
+public class TreeMapTest2 {
     public static void main(String args[]) {
-        TreeMap<Student, String> studentTreeMap = new TreeMap<>(new Comparator<Student>() {
+        TreeMap<Integer, List<Student>> studentTreeMap2 = new TreeMap<>(new Comparator<Integer>() {
             @Override
-            public int compare(Student o1, Student o2) {
-                return o1.age - o2.age;
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
             }
         });
-        studentTreeMap.put(new Student("a", 23), "a");
-        studentTreeMap.put(new Student("b", 13), "b");
-        studentTreeMap.put(new Student("c", 30), "c");
-        studentTreeMap.put(new Student("d", 11), "d");
-        studentTreeMap.put(new Student("e", 13), "e");  // 这个值不会出现
-        studentTreeMap.put(new Student("f", 5), "f");
-        studentTreeMap.put(new Student("g", 10), "g");
 
-        Set<Student> studentsKey = studentTreeMap.keySet();
-        Iterator<Student> studentsKeyIter = studentsKey.iterator();
+        List<Student> studentList = new ArrayList<>();
+        studentList.add(new Student("a", 23));
+        studentList.add(new Student("b", 13));
+        studentList.add(new Student("c", 30));
+        studentList.add(new Student("d", 11));
+        studentList.add(new Student("e", 13));
+        studentList.add(new Student("f", 5));
+        studentList.add(new Student("g", 10));
 
-        while (studentsKeyIter.hasNext()) {
-            Student next = studentsKeyIter.next();
-            System.out.println(next);
+        for (Student student : studentList) {
+            if (studentTreeMap2.containsKey(student.age)) {
+                studentTreeMap2.get(student.age).add(student);
+            } else {
+                List<Student> arr = new ArrayList<>();
+                arr.add(student);
+                studentTreeMap2.put(student.age, arr);
+            }
+        }
 
+
+        Set<Integer> keySet = studentTreeMap2.keySet();
+        Iterator<Integer> keyIter = keySet.iterator();
+        while (keyIter.hasNext()) {
+            Integer age = keyIter.next();
+            List<Student> students = studentTreeMap2.get(age);
+            for (Student s :students) {
+                System.out.print(s+"\t");
+            }
+
+            System.out.println();
 
         }
 
     }
 }
+
+
+/* 输出结果
+        Student{name='f', age=5}
+        Student{name='g', age=10}
+        Student{name='d', age=11}
+        Student{name='b', age=13}	Student{name='e', age=13}
+        Student{name='a', age=23}
+        Student{name='c', age=30}
+*/
