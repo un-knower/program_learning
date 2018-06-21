@@ -1,32 +1,32 @@
-﻿02 20 * * * source /etc/profile && sh /home/wangguangliang/anti-strategy/java/com/didi/anomaly/run_gmm.sh antispam.antispam__zc_order_merger_result kc > /tmp/run_gmm_kc.log 2>&1
-03 21 * * * source /etc/profile && sh /home/wangguangliang/anti-strategy/java/com/didi/anomaly/run_gmm.sh antispam.antispam__feature_center_sf sf > /tmp/run_gmm_sf.log 2>&1
-55 21 * * * source /etc/profile && sh /home/wangguangliang/anti-strategy/java/com/didi/anomaly/run_gmm.sh antispam.antispam__feature_center_taxi taxi > /tmp/run_gmm_taxi.log 2>&1
+﻿02 20 * * * source /etc/profile && sh anomaly/run_gmm.sh antispam.antispam__zc_order_merger_result kc > /tmp/run_gmm_kc.log 2>&1
+03 21 * * * source /etc/profile && sh anomaly/run_gmm.sh antispam.antispam__feature_center_sf sf > /tmp/run_gmm_sf.log 2>&1
+55 21 * * * source /etc/profile && sh anomaly/run_gmm.sh antispam.antispam__feature_center_taxi taxi > /tmp/run_gmm_taxi.log 2>&1
 
 建表
 CREATE TABLE test.antispam_cblof(
 `create_time` String COMMENT '时间',
-`kc` string COMMENT '快车异常率', 
-`taxi` string COMMENT '出租车异常率',
-`sf` string COMMENT '顺风车异常率'
+`kc` string COMMENT 'kc异常率',
+`taxi` string COMMENT 'taxi异常率',
+`sf` string COMMENT 'sf异常率'
 )
 ROW FORMAT DELIMITED FIELDS TERMINATED BY  '\t' ; 
  
 CREATE TABLE test.antispam_cblof_kc(
 `time` String COMMENT '时间',
-`cblof` string COMMENT '快车异常率'
+`cblof` string COMMENT 'kc异常率'
 )
 ROW FORMAT DELIMITED FIELDS TERMINATED BY  '\t' ; 
  
 CREATE TABLE test.antispam_cblof_sf(
 `time` String COMMENT '时间',
-`cblof` string COMMENT '顺风车异常率'
+`cblof` string COMMENT 'sf异常率'
 )
 ROW FORMAT DELIMITED FIELDS TERMINATED BY  '\t' ; 
 
 
 CREATE TABLE test.antispam_cblof_taxi(
 `time` String COMMENT '时间',
-`cblof` string COMMENT '出租车异常率'
+`cblof` string COMMENT 'taxi异常率'
 )
 ROW FORMAT DELIMITED FIELDS TERMINATED BY  '\t' ;  
 

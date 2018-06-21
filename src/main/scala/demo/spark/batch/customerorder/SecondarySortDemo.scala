@@ -2,8 +2,8 @@ package demo.spark.batch.customerorder
 
 import org.apache.spark.{SparkConf, SparkContext}
 
-class SecondarySort(val first:Int, val second:Int) extends Ordered[SecondarySort] with Serializable {
-  override def compare(that: SecondarySort): Int = {
+class SecondarySort2(val first:Int, val second:Int) extends Ordered[SecondarySort2] with Serializable {
+  override def compare(that: SecondarySort2): Int = {
       if ( this.first - that.first != 0 ) {
         this.first - that.first
       } else {
@@ -23,7 +23,7 @@ object SecondarySortDemo {
     val data = sc.textFile("src\\main\\java\\demo\\hadoop\\sort\\secondarysort")
     val pairWithSortKey = data.map(line => {
       val splited = line.split(" ")
-      (new SecondarySort(splited(0).toInt, splited(1).toInt), line)
+      (new SecondarySort2(splited(0).toInt, splited(1).toInt), line)
     })
 
     // sortByKey实现二次排序

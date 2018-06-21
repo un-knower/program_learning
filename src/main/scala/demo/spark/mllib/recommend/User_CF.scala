@@ -2,9 +2,11 @@ package demo.spark.mllib.recommend
 
 import org.apache.log4j.{ Level, Logger }
 import org.apache.spark.{ SparkConf, SparkContext }
+import org.apache.spark.rdd.RDD
 import scala.collection.mutable.ArrayBuffer
+import scala.collection.immutable.Range.Int
 import scala.util.{Success, Try}
-object ItemCF {
+object User_CF {
   def verify(str: String, dtype: String):Boolean = {
 
     var c:Try[Any] = null
@@ -29,7 +31,7 @@ object ItemCF {
   def main(args: Array[String]) {
 
     //0 构建Spark对象
-    val conf = new SparkConf().setAppName("ItemCF").setMaster("local[*]")
+    val conf = new SparkConf().setAppName("User_CF")//.setMaster("local[*]")
     conf.set("spark.shuffle.io.retryWait", "10s")
     conf.set("spark.rdd.compress", "true")
     conf.set("spark.serializer","org.apache.spark.serializer.KryoSerializer")
@@ -47,6 +49,7 @@ object ItemCF {
     val LAST_TS = NOW_TS - 172800
 
     val sc = new SparkContext(conf)
+    Logger.getRootLogger.setLevel(Level.WARN)
 
     val cur_ts = Integer.parseInt(args(0).trim)
     val path_num = Integer.parseInt(args(1).trim)
@@ -56,25 +59,18 @@ object ItemCF {
        path += args(idx+2).trim
     }
 
-
-
-
-
     //1 读取样本数据
-//    val data_path = "E:\\code\\intellij_code\\spark_dm-master\\src\\main\\scala\\com\\diditaxi\\spark\\ml\\recommender\\1.txt"
-    
-    var data = sc.textFile(path(0))
+  
+    var data = sc.textFile(path(0), PARTITION_NUM)
     for(idx <- 1 until path.length) {
-        val tmp_path = sc.textFile(path(idx))
-        data = data.union(tmp_path)  
+      val tmp_path = sc.textFile(path(idx))
+      data = data.union(tmp_path)
     }
-    
-
 
     val userdata = data.repartition(PARTITION_NUM).map(_.replaceAll("\\(|\\)|\\'", "")).map{x=>
       val arr = x.split(",")
       (arr(0).trim,arr(1).trim,Integer.parseInt(arr(2).trim))
-      }
+      }.repartition(PARTITION_NUM)
       .filter{f =>
         val docid = f._1
         val click_time = f._3
@@ -90,7 +86,7 @@ object ItemCF {
          isFilter
         }
 
-    .map(f => (ItemPref(f._1, f._2, 1.0)))
+    .map(f => (ItemPref(f._1, f._2, 1.0))).repartition(PARTITION_NUM)
 
 
 
@@ -114,7 +110,10 @@ object ItemCF {
     })
 
     result.saveAsTextFile("/user/datacenter/wangguangliang/recommend/user_base_test/doc-item-base-"+NOW_TS)
-
+    
+    //result.collect().foreach(println)
+    
+    sc.stop()
 
 //    val recommd = new RecommendedItem
 //    val recommd_rdd1 = recommd.Recommend(simil_rdd1, userdata, TOPN)
