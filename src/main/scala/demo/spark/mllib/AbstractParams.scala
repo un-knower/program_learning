@@ -1,6 +1,8 @@
 package demo.spark.mllib
 
 import scala.reflect.runtime.universe._
+import scala.reflect.api.TypeTags
+//import scala.reflect.TypeTags.TypeTag
 
 /**
  * Abstract class for parameter case classes.

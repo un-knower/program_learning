@@ -1,4 +1,4 @@
-package demo.spark.mllib;
+package demo.spark.mllib
 
 import org.apache.log4j.{Level, Logger}
 import scopt.OptionParser

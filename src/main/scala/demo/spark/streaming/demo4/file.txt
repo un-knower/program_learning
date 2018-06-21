@@ -1,0 +1,6 @@
+Jason,iPhone,iphone,9.99
+Gary,iPhone,iphone,599.00
+Scott,huawei,android,90.00
+Bob,huawei,android,89.00
+Mary,huawei,android,5.99
+Jason,iPhone,iphone,5.49

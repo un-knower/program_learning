@@ -16,7 +16,7 @@
         <junit.version>4.12</junit.version>
         <junit.jupiter.version>5.0.2</junit.jupiter.version>
         <hadoop.version>2.6.0</hadoop.version>
-        <hbase.version>1.2.6</hbase.version>
+        <hbase.version>1.1.2</hbase.version>
     </properties>
 
     <dependencies>
@@ -88,8 +88,12 @@
             <version>${hadoop.version}</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>jdk.tools</artifactId>
                     <groupId>jdk.tools</groupId>
+                    <artifactId>jdk.tools</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>netty</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -100,16 +104,22 @@
         </dependency>
 
         <!--hbase-->
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase</artifactId>
-            <version>${hbase.version}</version>
-            <type>pom</type>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.hbase</groupId>-->
+            <!--<artifactId>hbase</artifactId>-->
+            <!--<version>${hbase.version}</version>-->
+            <!--<type>pom</type>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
             <version>${hbase.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>netty-all</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.hbase</groupId>
@@ -125,6 +135,16 @@
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-server</artifactId>
             <version>${hbase.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>netty-all</artifactId>
+                    <groupId>io.netty</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>netty</artifactId>
+                    <groupId>io.netty</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
@@ -154,6 +174,11 @@
             <artifactId>spark-mllib_2.11</artifactId>
             <version>${spark.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-graphx_2.11</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
 
         <!--<dependency>-->
         <!--<groupId>org.apache.spark</groupId>-->
@@ -170,6 +195,8 @@
             <artifactId>spark-sql-kafka-0-10_2.11</artifactId>
             <version>${spark.version}</version>
         </dependency>
+
+        <!--kafka-->
         <!--<dependency>-->
         <!--<groupId>org.apache.kafka</groupId>-->
         <!--<artifactId>kafka_2.11</artifactId>-->
@@ -188,7 +215,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.47</version>
         </dependency>
-
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.3</version>
+        </dependency>
         <!--jsqlparser-->
         <dependency>
             <groupId>com.github.jsqlparser</groupId>
@@ -296,7 +327,6 @@
 
     </dependencies>
 
-
     <build>
         <plugins>
             <!-- 这是个编译java代码的 -->
@@ -358,8 +388,6 @@
                                     </excludes>
                                 </filter>
                             </filters>
-
-
                         </configuration>
                     </execution>
                 </executions>
