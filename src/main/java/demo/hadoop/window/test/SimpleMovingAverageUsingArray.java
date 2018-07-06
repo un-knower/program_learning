@@ -1,4 +1,6 @@
-package demo.hadoop.window;
+package demo.hadoop.window.test;
+
+import demo.hadoop.window.SimpleWindow;
 
 /**
  * 模拟window 解决方案2

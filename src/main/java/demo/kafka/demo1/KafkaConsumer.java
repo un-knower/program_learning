@@ -46,7 +46,7 @@ public class KafkaConsumer extends Thread{
 		return Consumer.createJavaConsumerConnector(new ConsumerConfig(properties));
 	}
 	public static void main(String[] args) {
-		new KafkaConsumer("test").start();
+		new KafkaConsumer("datacenter_sdk_etl").start();
 	}
 
 }

@@ -13,6 +13,12 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
+
+/**
+ * hadoop计算滑动窗口中的平均值
+ */
+
+
 /**
  * 决定那个key 划分到哪个reducer
  */
@@ -76,6 +82,10 @@ class MovingAverageReducer extends Reducer<TimeSeriesData, TimeValueData, Text, 
         context.write(result, NullWritable.get());
     }
 }
+
+/**
+ * hadoop计算滑动窗口中的平均值
+ */
 public class MovingAverageMR {
     private static final String INPUT_PATH = "hdfs://SparkMaster:9000/eclipse/data/window_data";
     private static final String OUTPUT_PATH = "hdfs://SparkMaster:9000/out";
@@ -96,6 +106,7 @@ public class MovingAverageMR {
         FileInputFormat.setInputPaths(job, INPUT_PATH);
         FileOutputFormat.setOutputPath(job, new Path(OUTPUT_PATH));
         job.waitForCompletion(true);
+
     }
 
 }

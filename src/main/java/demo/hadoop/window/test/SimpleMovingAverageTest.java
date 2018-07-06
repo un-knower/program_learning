@@ -1,4 +1,4 @@
-package demo.hadoop.window;
+package demo.hadoop.window.test;
 
 public class SimpleMovingAverageTest {
     public static void main(String args[]) {
