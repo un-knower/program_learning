@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.Timestamp;
 
 /**
- * Author: baitianjiao
+ * Author: wguangliang
  * Date: 2018/4/2
  * Description:
  */

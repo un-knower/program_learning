@@ -11,7 +11,7 @@ import org.apache.spark.sql.types.StructType;
 import org.junit.Test;
 
 /**
- * Author: baitianjiao
+ * Author: wguangliang
  * Date: 2018/4/2
  * Description:
  */
