@@ -16,7 +16,7 @@ public class WordCountTopolopgy {
 	public static void main(String[] args) throws Exception {
 		if(args.length != 2) {
 			System.err.println("Usage: inputPath timeOffset");
-			System.err.println("./storm jar wordcount2.jar storm.demo.wordcount2.WordCountTopolopgy /home/wangguangliang/storm/data 2");
+			System.err.println("./storm jar wordcount2.jar storm.demo.wordcount2.WordCountTopolopgy /home/wguangliang/storm/data 2");
 			System.exit(2);
 		}
 		

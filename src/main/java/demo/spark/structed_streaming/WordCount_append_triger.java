@@ -12,7 +12,7 @@ import org.apache.spark.sql.streaming.Trigger;
 import java.util.Arrays;
 
 /**
- * @author bjwangguangliang
+ * @author wguangliang
 在Structured Streaming 里，多出了outputMode,现在有complete,append,update 三种，现在的版本只实现了前面两种。
 
 complete,每次计算完成后，你都能拿到全量的计算结果。

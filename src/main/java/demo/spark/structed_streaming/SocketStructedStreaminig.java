@@ -11,7 +11,7 @@ import org.apache.spark.sql.streaming.StreamingQueryException;
 import java.util.Arrays;
 
 /**
- * @author bjwangguangliang
+ * @author wguangliang
  */
 public class SocketStructedStreaminig {
     public static void main(String args[]) throws StreamingQueryException {

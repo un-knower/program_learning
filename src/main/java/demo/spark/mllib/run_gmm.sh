@@ -9,7 +9,7 @@
 
 filepath=$(cd "$(dirname "$0")"; pwd)
 jarpath=$filepath/../../../../bazel-bin/java/com/didi/anomaly/GmmEM.jar
-resultpath=/user/wangguangliang/output
+resultpath=/user/wguangliang/output
 retryNum=10
 sec=7
 today=`date "+%Y%m%d"`

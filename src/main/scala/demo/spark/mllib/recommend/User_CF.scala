@@ -109,7 +109,7 @@ object User_CF {
       uid+"\1"+res.mkString("\2")
     })
 
-    result.saveAsTextFile("/user/datacenter/wangguangliang/recommend/user_base_test/doc-item-base-"+NOW_TS)
+    result.saveAsTextFile("/user/datacenter/wguangliang/recommend/user_base_test/doc-item-base-"+NOW_TS)
     
     //result.collect().foreach(println)
     

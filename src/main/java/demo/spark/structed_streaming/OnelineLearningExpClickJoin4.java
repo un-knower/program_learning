@@ -17,7 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * @author bjwangguangliang
+ * @author wguangliang
  */
 public class OnelineLearningExpClickJoin4 {
     private static final String bootstrapServers = "SparkMaster:9092";

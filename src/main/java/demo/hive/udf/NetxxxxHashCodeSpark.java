@@ -20,7 +20,7 @@ import org.apache.storm.guava.io.BaseEncoding;
 
 /**
  * 
- * @author bjwangguangliang
+ * @author wguangliang
 add jar /home/appops/devid_hashcode.jar;
 add jar /home/appops/guava-23.0.jar;
 create temporary function devid_hashcode as 'demo.hive.udf.NetxxxxHashCodeSpark';

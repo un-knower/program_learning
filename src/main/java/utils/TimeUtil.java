@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
- * @author bjwangguangliang
+ * @author wguangliang
  * Date: 17-11-24
  * Time: 上午11:13
  * 解析时间/时间戳 得到 drui时间 yyyy-MM-ddTHH:mm:ss:SSS

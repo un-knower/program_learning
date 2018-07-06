@@ -16,7 +16,7 @@ import scala.Tuple2;
 import java.util.*;
 
 /**
- * @author bjwangguangliang
+ * @author wguangliang
  *
  * Durations.seconds(30), Durations.seconds(20) 有问题
  * Durations.seconds(30), Durations.seconds(10) 没问题

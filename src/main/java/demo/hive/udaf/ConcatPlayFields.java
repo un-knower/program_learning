@@ -5,7 +5,7 @@ import org.apache.hadoop.hive.ql.exec.UDAFEvaluator;
 
 /**
  * 
- * add jar /srv/nbs/0/apps/wangguangliang/short_video_etl/recommend_detail/playconcat.jar;
+ * add jar /srv/nbs/0/apps/wguangliang/short_video_etl/recommend_detail/playconcat.jar;
  * create temporary function playconcat as 'demo.hive.udaf.ConcatPlayFields';
  * 
 select device_uuid,split(device_uuid,'#')[0],split(device_uuid,'#')[1],playconcat(vid,occurtime,dura,pg,',')
@@ -13,7 +13,7 @@ from datacenter.adm_videorec_play_detail_day
 where day='20170801'
 group by device_uuid,split(device_uuid,'#')[0],split(device_uuid,'#')[1];
  * 
- * @author bjwangguangliang
+ * @author wguangliang
  *
  */
 public class ConcatPlayFields extends UDAF {

@@ -24,7 +24,7 @@ TBLPROPERTIES (
   'totalSize'='88', 
   'transient_lastDdlTime'='1501643310')
   
-add jar /srv/nbs/0/apps/wangguangliang/short_video_etl/recommend_detail/testconcat.jar; 
+add jar /srv/nbs/0/apps/wguangliang/short_video_etl/recommend_detail/testconcat.jar;
 create temporary function helloconcat as 'demo.hive.udaf.ConcatTestFields';
 
 select u,helloconcat(addr,phone,',')

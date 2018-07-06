@@ -43,7 +43,7 @@ grant all on table  test.antispam_cblof to user wangleikidding;
 show grant user wangleikidding on table test.antispam_cblof;
 
 //授予hdfs权限，相当于授予hive权限
-hadoop fs -chmod 777 /user/wangguangliang/warehouse/cblof.db/antispam_cblof/
+hadoop fs -chmod 777 /user/wguangliang/warehouse/cblof.db/antispam_cblof/
 
 
 //删除数据

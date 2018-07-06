@@ -20,7 +20,7 @@ import org.apache.storm.guava.io.BaseEncoding;
 
 /**
  * 
- * @author bjwangguangliang
+ * @author wguangliang
 add jar /home/appops/netxxxx_location.jar;
 add jar /home/appops/guava-23.0.jar;
 create temporary function netxxxx_location as 'demo.hive.udf.NetxxxxLocation';

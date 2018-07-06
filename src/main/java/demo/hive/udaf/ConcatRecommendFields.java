@@ -5,7 +5,7 @@ import org.apache.hadoop.hive.ql.exec.UDAFEvaluator;
 
 /**
  * 
- * add jar /srv/nbs/0/apps/wangguangliang/short_video_etl/recommend_detail/recommendconcat.jar;
+ * add jar /srv/nbs/0/apps/wguangliang/short_video_etl/recommend_detail/recommendconcat.jar;
  * create temporary function recommendconcat as 'demo.hive.udaf.ConcatRecommendFields';
  * 
 select device_uuid,split(device_uuid,'#')[0],split(device_uuid,'#')[1],recommendconcat(vid,title,imgpath,is_rcc,is_share,is_collect,is_uninterested,is_tie,',')
@@ -13,7 +13,7 @@ from datacenter.adm_videorec_detail_day
 where day='20170801'
 group by device_uuid,split(device_uuid,'#')[0],split(device_uuid,'#')[1];
  * 
- * @author bjwangguangliang
+ * @author wguangliang
  *
  */
 public class ConcatRecommendFields extends UDAF {

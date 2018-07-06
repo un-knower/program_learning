@@ -5,7 +5,7 @@ import org.apache.hadoop.hive.ql.exec.UDAFEvaluator;
 
 /**
  * 
-add jar /srv/nbs/0/apps/wangguangliang/short_video_etl/recommend_detail/tieconcat.jar;
+add jar /srv/nbs/0/apps/wguangliang/short_video_etl/recommend_detail/tieconcat.jar;
 create temporary function tieconcat as 'demo.hive.udaf.ConcatTieFields';
  * 
 select device_uuid,split(device_uuid,'#')[0],split(device_uuid,'#')[1],tieconcat(ip,vid,title,occurtime,content,',')
@@ -13,7 +13,7 @@ from datacenter.adm_videorec_play_detail_day
 where day='20170801'
 group by device_uuid,split(device_uuid,'#')[0],split(device_uuid,'#')[1];
  * 
- * @author bjwangguangliang
+ * @author wguangliang
  *
  */
 public class ConcatTieFields extends UDAF {

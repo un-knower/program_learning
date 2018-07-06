@@ -7,7 +7,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 /**
  * expireAfterWrite和expireAfterAccess
- * @author bjwangguangliang
+ * @author wguangliang
  *
  */
 public class CacheTest {

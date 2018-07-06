@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * @author bjwangguangliang
+ * @author wguangliang
  */
 public class KafkaProducer implements KryoSerializable {
     public static final String METADATA_BROKER_LIST_KEY = "metadata.broker.list";

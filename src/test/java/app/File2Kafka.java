@@ -12,7 +12,7 @@ import java.util.Properties;
  * 文件写入kafka
  */
 public class File2Kafka {
-    private static final String file = "C:\\Users\\bjwangguangliang\\Desktop\\1.txt";
+    private static final String file = "C:\\Users\\wguangliang\\Desktop\\1.txt";
     private static final String SERIALIZER_CLASS = "org.apache.kafka.common.serialization.StringSerializer"; // 序列化类
     private static final String TOPIC = "flinktest"; //kafka创建的topic
     private static final String BROKER_LIST = "sparkmaster:9092"; //broker的地址和端口
