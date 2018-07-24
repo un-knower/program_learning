@@ -48,7 +48,7 @@ public class WordCount_window_append {
                                    .load();
 
 
-        Dataset<Row> words = lines.withColumn("timstamp", functions.current_timestamp()).as(Encoders.tuple(Encoders.STRING(), Encoders.TIMESTAMP())).flatMap((FlatMapFunction<Tuple2<String, Timestamp>, Tuple2<String, Timestamp>>) t -> {
+        Dataset<Row> words = lines.withColumn("timestamp", functions.current_timestamp()).as(Encoders.tuple(Encoders.STRING(), Encoders.TIMESTAMP())).flatMap((FlatMapFunction<Tuple2<String, Timestamp>, Tuple2<String, Timestamp>>) t -> {
                     List<Tuple2<String, Timestamp>> result = new ArrayList<>();
                     for (String word : t._1.split(" ")) {
                         result.add(new Tuple2<>(word, t._2));

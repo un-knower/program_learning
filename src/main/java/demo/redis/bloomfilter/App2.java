@@ -34,6 +34,39 @@ public class App2 {
         BitSet initBitSet2 = new BitSet(129);
 
         // https://www.cnblogs.com/xupengzhang/p/7966755.html
+
+
+        //全量bitset
+        BitSet allBitSet = new BitSet();
+        //偶数bitset
+        BitSet evenBitSet = new BitSet();
+        //奇数bitset
+        BitSet oddBitSet = new BitSet();
+        //空bitset
+        BitSet emptyBitSet = new BitSet();
+
+        for (int i=0;i<63;i++) {
+            allBitSet.set(i);
+            if (i%2 == 0) {
+                evenBitSet.set(i);
+            } else {
+                oddBitSet.set(i);
+            }
+        }
+
+
+        System.out.println(allBitSet.cardinality());   // 63
+        System.out.println("偶数Bit-true的个数：" + evenBitSet.cardinality());  // 32
+        System.out.println("奇数Bit-true的个数：" + oddBitSet.cardinality());   // 31
+
+
+        System.out.println(evenBitSet.get(2) +":"+ oddBitSet.get(2)); // true:false
+        System.out.println("全量Bit-长度：" + allBitSet.length());   // 63
+        System.out.println("偶数Bit-长度：" + evenBitSet.length());  // 63
+
+
+
+
     }
 
 }

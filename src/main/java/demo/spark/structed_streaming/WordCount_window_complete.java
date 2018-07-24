@@ -100,8 +100,8 @@ public class WordCount_window_complete {
                 },
                 Encoders.tuple(Encoders.STRING(), Encoders.TIMESTAMP())
         ).toDF("word", "timestamp");
-
-        Dataset<Row> windowedCounts = words.withWatermark("timestamp", "10 seconds").groupBy(
+        Dataset<Row> wordsWithtime = words.withWatermark("timestamp", "10 seconds");
+        Dataset<Row> windowedCounts = wordsWithtime.groupBy(
                                                  functions.window(words.col("timestamp"),
                                                  "10 seconds",
                                                  "5 seconds"),

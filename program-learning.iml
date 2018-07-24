@@ -14,22 +14,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="scala-sdk-2.11.12" level="application" />
-    <orderEntry type="library" name="Maven: org.apache.hbase:hbase-client:1.1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.hbase:hbase-annotations:1.1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.hbase:hbase-protocol:1.1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.hbase:hbase-hadoop-compat:1.1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.hbase:hbase-common:1.1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.hbase:hbase-server:1.1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.hbase:hbase-procedure:1.1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.hbase:hbase-common:tests:1.1.2" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.hbase:hbase-prefix-tree:1.1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.hbase:hbase-hadoop2-compat:1.1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.jamon:jamon-runtime:2.3.1" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.17.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty:3.9.9.Final" level="project" />
-    <orderEntry type="library" name="Maven: net.sf.json-lib:json-lib:2.3" level="project" />
-    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.0" level="project" />
-    <orderEntry type="library" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.0.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-commons:1.0.2" level="project" />
@@ -161,7 +145,7 @@
     <orderEntry type="module-library">
       <library name="Maven: jdk.tools:jdk.tools:1.7">
         <CLASSES>
-          <root url="jar://C:/Program Files/Java/jdk1.8.0_74/lib/tools.jar!/" />
+          <root url="jar://D:/Program Files/Java/jdk1.8.0_45/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
