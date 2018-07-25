@@ -14,6 +14,7 @@ import org.apache.spark.api.java.function.PairFunction;
 import scala.Tuple2;
 
 public class GroupByKeyTest {
+
     public static void main(String args[]) {
         SparkConf sparkConf = new SparkConf();
         sparkConf.setAppName("").setMaster("local");

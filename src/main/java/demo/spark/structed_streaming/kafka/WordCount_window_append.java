@@ -1,5 +1,6 @@
 package demo.spark.structed_streaming.kafka;
 
+import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.MapFunction;
 import org.apache.spark.sql.*;
 import org.apache.spark.sql.streaming.StreamingQuery;
@@ -10,6 +11,7 @@ import scala.Tuple2;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 
 /**
 API是通过一个全局的window方法来设置，如下所示是其Spark实现细节：
@@ -119,8 +121,11 @@ API是通过一个全局的window方法来设置，如下所示是其Spark实现
 
  */
 public class WordCount_window_append {
+
     private static final String bootstrapServers = "SparkMaster:9092";
     private static final String topics = "flinktest";  //topic1,topic2
+
+
     public static void main(String args[]) throws StreamingQueryException {
         SparkSession spark = SparkSession.builder().appName("").master("local[5]")
                 .config("spark.sql.shuffle.partitions", 5) //https://stackoverflow.com/questions/45704156/what-is-the-difference-between-spark-sql-shuffle-partitions-and-spark-default-pa
@@ -134,7 +139,6 @@ public class WordCount_window_append {
                 //.option("startingOffsets","latest")
                 .load()
                 .selectExpr("CAST(value AS STRING)");
-
 
         Dataset<Row> words = lines.map(new MapFunction<Row, Tuple2<String, Timestamp>>() {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
