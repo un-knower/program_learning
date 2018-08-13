@@ -9,8 +9,8 @@ object List_Thinking {
     println(list.head)
     println(list.tail)
     println(list.length)
-    println(list.drop(2))
-    list.map(_*2)
+    println(list.drop(2))  // 删除前n个元素
+    println(list.map(_*2))
     
     
   }

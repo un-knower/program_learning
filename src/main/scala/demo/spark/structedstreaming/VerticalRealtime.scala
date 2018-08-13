@@ -4,7 +4,25 @@ import java.sql.Timestamp
 import java.util.Date
 
 import com.alibaba.fastjson.JSON
+import org.apache.spark.sql.streaming.Trigger
 import org.apache.spark.sql.{SparkSession, functions}
+
+/**
+时间窗口10s，计算公式如下：
+UV = count(distinct(EV of device_id))
+PV = count(EV)
+人均刷新 = PV/UV
+人均点击 = count(RCC) / UV
+点击率 = count(RCC ) / sum( EV的总文章数)
+人均停留时长 = sum(DU) / UV
+
+程序计算 （只做加法）：
+UV	PV	count(RCC)	sum(EV的总文章数)		sum(DU)
+存入mysql
+其他指标（除法）在查询mysql时进行计算
+
+  */
+
 
 //                  2S5Wcx/2x1kfBk63z EV/RCC/DU 科技、娱乐、体育、财经  deviceid      ios/android     时长   是否是点击   一条EV总文章数    时间戳
 case class VerticalData(id:String, event:String, column:String, deviceid:String, platform:String, du:Int, isrcc:Int, datalen:Int, timestamp:Timestamp)
@@ -90,8 +108,14 @@ object VerticalRealtime {
       functions.sum("du").alias("du")
     )
 
-    ev.writeStream.outputMode("update").format("console").option("truncate","false").start()
-    all.writeStream.outputMode("update").format("console").option("truncate","false").start()
+    ev.writeStream.outputMode("append").trigger(Trigger.ProcessingTime("10 seconds")).format("console").option("truncate","false").start()
+    all.writeStream.outputMode("append").trigger(Trigger.ProcessingTime("10 seconds")).format("console").option("truncate","false").start()
+//
+//    ev.writeStream.outputMode("update").format("console").option("truncate","false").start()
+//    all.writeStream.outputMode("update").format("console").option("truncate","false").start()
+
+//    ev.writeStream.outputMode("complete").format("console").option("truncate","false").start()
+//    all.writeStream.outputMode("complete").format("console").option("truncate","false").start()
 
     spark.streams.awaitAnyTermination()
   }

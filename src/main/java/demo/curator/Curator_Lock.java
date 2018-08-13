@@ -28,8 +28,6 @@ public class Curator_Lock {
                         down.await();
                         lock.acquire();  // 全局锁加锁
 
-
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
